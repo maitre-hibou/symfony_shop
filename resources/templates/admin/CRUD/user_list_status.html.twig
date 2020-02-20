@@ -1,0 +1,17 @@
+{#
+This file is part of the Sonata package.
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% if value < 0 %}
+    {% set labelClass = 'danger' %}
+{% elseif value == 0 %}
+    {% set labelClass = 'warning' %}
+{% else %}
+    {% set labelClass = 'primary' %}
+{% endif %}
+<td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}"{% if field_description.options.row_align is defined %} style="text-align:{{ field_description.options.row_align }}"{% endif %}>
+    {% set value = 'Status ' ~ value %}
+    <span class="label label-{{ labelClass }}">{{ value|trans({}, 'admin') }}</span>
+</td>

@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  app:
+    volumes:
+      - symfony_core_app-sync:/app
+  web:
+    ports:
+      - 8080:80
+      - 8081:443
+    volumes:
+      - symfony_core_app-sync:/app
+  node:
+    volumes:
+      - symfony_core_app-sync:/app
+  phpmyadmin:
+    build:
+      context: ..
+      dockerfile: ./docker/services/phpmyadmin/Dockerfile
+    depends_on:
+      - database
+    environment:
+      - PMA_HOST=database
+      - VIRTUAL_HOST=pma.symfony-core.local
+    networks:
+      - symfony_core_ocal
+  maildev:
+    build:
+      context: ..
+      dockerfile: ./docker/services/maildev/Dockerfile
+    environment:
+      - VIRTUAL_HOST=pma.symfony-core.local
+    networks:
+     - symfony_core_ocal
+
+volumes:
+  symfony_core_app-sync:
+    external: true
+  symfony_core_web-sync:
+    external: true

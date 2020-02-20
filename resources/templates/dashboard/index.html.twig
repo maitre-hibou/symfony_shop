@@ -1,0 +1,37 @@
+{% extends 'layout/default.html.twig' %}
+
+{% set title = 'Dashboard' %}
+
+{% block title %}{{ title }} | {{ parent() }}{% endblock %}
+
+{% block body_class %}demo-page{% endblock %}
+
+{% block content %}
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        {% include 'demo_menu.html.twig' with {activeLink: false} only %}
+
+        <main class="h-100 d-flex flex-column">
+            <div class="container">
+                <header class="mt-3">
+                    <h1>{{ title }}</h1>
+                    <hr>
+                </header>
+
+                {% include 'common/flashes.html.twig' with {flashes: app.flashes} only %}
+
+                <div class="row">
+                    <div class="col-3">
+                        {% include 'dashboard/common/dashboard_menu.html.twig' with {active: 'index'} only %}
+                    </div>
+                    <div class="col-9">
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-auto text-center">
+            <p class="mt-5 mb-0 text-muted">© 2019-2020 | Made with ❤ by <a href="https://www.xpressive.io" target="_blank">xpressive</a>.</p>
+        </footer>
+    </div>
+{% endblock %}

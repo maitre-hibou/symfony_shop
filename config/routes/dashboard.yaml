@@ -1,0 +1,7 @@
+dashboard_index:
+  path: /dashboard
+  controller: App\Action\Dashboard\IndexAction
+
+dashboard_profile:
+  path: /dashboard/profile
+  controller: App\Action\Dashboard\ProfileAction

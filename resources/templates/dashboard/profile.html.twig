@@ -1,0 +1,91 @@
+{% extends 'layout/default.html.twig' %}
+
+{% set title = 'Profile' %}
+
+{% form_theme informationsForm 'form_theme.html.twig' %}
+{% form_theme changePasswordForm 'form_theme.html.twig' %}
+
+{% block title %}{{ title }} | {{ parent() }}{% endblock %}
+
+{% block body_class %}demo-page{% endblock %}
+
+{% block content %}
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        {% include 'demo_menu.html.twig' with {activeLink: false} only %}
+
+        <main class="h-100 d-flex flex-column">
+            <div class="container">
+                <header class="mt-3">
+                    <h1>{{ title }}</h1>
+                    <hr>
+                </header>
+
+                {% include 'common/flashes.html.twig' with {flashes: app.flashes} only %}
+
+                <div class="row">
+                    <div class="col-3">
+                        {% include 'dashboard/common/dashboard_menu.html.twig' with {active: 'profile'} only %}
+                    </div>
+
+                    <div class="col-9">
+                        {{ form_start(informationsForm, {attr: {class: 'card'}}) }}
+                            <div class="card-header">
+                                <h2 class="my-2">Your informations</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    {{ form_label(informationsForm.firstname) }}
+                                    {{ form_widget(informationsForm.firstname, {attr: {class: 'form-control'}}) }}
+                                    {{ form_errors(informationsForm.firstname) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(informationsForm.lastname) }}
+                                    {{ form_widget(informationsForm.lastname, {attr: {class: 'form-control'}}) }}
+                                    {{ form_errors(informationsForm.lastname) }}
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                {{ form_widget(informationsForm.submit, {attr: {class: 'btn btn-secondary'}}) }}
+                            </div>
+                        {{ form_end(informationsForm) }}
+
+                        {{ form_start(changePasswordForm, {attr: {class: 'card mt-3'}}) }}
+                            <div class="card-header">
+                                <h2>Security</h2>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    {{ form_label(changePasswordForm.currentPassword) }}
+                                    {{ form_widget(changePasswordForm.currentPassword, {attr: {class: 'form-control'}}) }}
+                                    {{ form_errors(changePasswordForm.currentPassword) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(changePasswordForm.password.first) }}
+                                    {{ form_widget(changePasswordForm.password.first, {attr: {class: 'form-control'}}) }}
+                                    {{ form_errors(changePasswordForm.password.first) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(changePasswordForm.password.second) }}
+                                    {{ form_widget(changePasswordForm.password.second, {attr: {class: 'form-control'}}) }}
+                                    {{ form_errors(changePasswordForm.password.second) }}
+                                </div>
+                            </div>
+
+                            <div class="card-footer text-right">
+                                {{ form_widget(changePasswordForm.submit, {attr: {class: 'btn btn-secondary'}})}}
+                            </div>
+                        {{ form_end(changePasswordForm) }}
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-auto text-center">
+            <p class="mt-5 mb-0 text-muted">© 2019-2020 | Made with ❤ by <a href="https://www.xpressive.io" target="_blank">xpressive</a>.</p>
+        </footer>
+    </div>
+{% endblock %}

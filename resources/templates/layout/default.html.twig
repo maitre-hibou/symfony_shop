@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Symfony Core App{% endblock %}</title>
+        <link rel="icon" type="image/png" href="{{ asset('dist/img/logo.png') }}">
+
+        {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,700,700i|Raleway:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('dist/css/theme.css') }}">
+        {% endblock %}
+
+        {% block page_styles %}{% endblock %}
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+
+        {% block content %}{% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('dist/js/theme.js') }}"></script>
+        {% endblock %}
+
+        {% block page_scripts %}{% endblock %}
+    </body>
+</html>

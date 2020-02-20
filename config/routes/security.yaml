@@ -1,0 +1,26 @@
+security_register:
+  path: /register
+  controller: App\Action\Security\RegisterAction
+
+security_confirm_email:
+  path: /confirm_email/{token}
+  controller: App\Action\Security\ConfirmEmailAction
+
+security_refresh_confirm_email:
+  path: /refresh_confirm_email/{token}
+  controller: App\Action\Security\RefreshConfirmEmailAction
+
+security_login:
+  path: /login
+  controller: App\Action\Security\LoginAction
+
+security_logout:
+  path: /logout
+
+security_reset_password_request:
+  path: /reset_password_request
+  controller: App\Action\Security\ResetPasswordRequestAction
+
+security_reset_password:
+  path: /reset_password/{token}
+  controller: App\Action\Security\ResetPasswordAction

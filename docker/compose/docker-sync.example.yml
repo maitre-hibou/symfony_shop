@@ -1,0 +1,24 @@
+version: "2"
+
+options:
+  verbose: true
+
+syncs:
+  symfony_core_app-sync:
+    src: './'
+    sync_strategy: 'unison'
+    sync_host_ip: '127.0.0.1'
+    sync_args:
+      - '-perms=0'
+      - "-ignore='Path .idea'"                        # IDE config
+      - "-ignore='Path .git'"                         # Git files
+      - "-ignore='Path .docker-sync'"                 # docker-sync files
+      - "-ignore='Path docker/storage'"               # Docker persisted data
+      - "-ignore='Name node_modules'"                 # NPM libraries
+    sync_excludes: ['.*/.git', '.*/.idea', '.*/.docker-sync', './docker/storage', '.*/node_modules']
+    watch_excludes: ['.*/.git', '.*/.idea', '.*/.docker-sync', './docker/storage', '.*/node_modules']
+  symfony_core_web-sync:
+    src: './public'
+    sync_host_ip: '127.0.0.1'
+    sync_strategy: 'unison'
+    sync_args: [ '-perms=0' ]

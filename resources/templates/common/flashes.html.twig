@@ -1,0 +1,13 @@
+<div class="flashes mt-3">
+    {% for label, messages in flashes %}
+        {% for message in messages %}
+            {% set alertClass = label == 'error' ? 'danger' : label %}
+            <div class="alert alert-{{ alertClass }} alert-dismissible fade show" role="alert">
+                <strong>{{ label|capitalize }}</strong> {{ message|raw }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>

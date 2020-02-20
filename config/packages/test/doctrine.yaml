@@ -1,0 +1,12 @@
+doctrine:
+  dbal:
+    url: 'mysql://%env(resolve:DB_USERNAME)%:%env(resolve:DB_PASSWORD)%@%env(resolve:DB_HOSTNAME)%:%env(resolve:DB_PORT)%/%env(resolve:DB_DATABASE)%_test'
+
+services:
+  App\DataFixtures\:
+    autowire: true
+    autoconfigure: true
+    public: false
+    resource: '../../../database/fixtures'
+    tags:
+      - { name: doctrine.fixtures.orm }

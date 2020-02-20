@@ -1,0 +1,19 @@
+sonata_admin:
+  title: 'Symfony Core'
+  title_logo: dist/img/logo.png
+  dashboard:
+    blocks:
+      - { type: sonata.admin.block.admin_list, position: left }
+  templates:
+    user_block: 'admin/user_block.html.twig'
+  search: false
+  security:
+    handler: sonata.admin.security.handler.role
+    role_admin: ROLE_ADMIN
+    role_super_admin: ROLE_SUPERADMIN
+  show_mosaic_button: false
+
+sonata_block:
+  blocks:
+    sonata.admin.block.admin_list:
+      contexts: [admin]

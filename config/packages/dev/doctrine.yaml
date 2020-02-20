@@ -1,0 +1,8 @@
+services:
+  App\DataFixtures\:
+    autowire: true
+    autoconfigure: true
+    public: false
+    resource: '../../../database/fixtures'
+    tags:
+      - { name: doctrine.fixtures.orm }

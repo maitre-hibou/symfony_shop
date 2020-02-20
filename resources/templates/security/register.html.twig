@@ -1,0 +1,111 @@
+{% extends 'layout/default.html.twig' %}
+
+{% form_theme registerForm 'form_theme.html.twig' %}
+
+{% block body_class %}demo-page{% endblock %}
+
+{% block content %}
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        {% include 'demo_menu.html.twig' with {activeLink: 'registration'} only %}
+
+        <main class="h-100 d-flex flex-column justify-content-center">
+            <div class="container">
+                <header class="text-center">
+                    <h1 class="m-0 font-weight-light">Registration</h1>
+                </header>
+
+                {% include 'common/flashes.html.twig' with {flashes: app.flashes} only %}
+
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col col-md-10 offset-md-1">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col col-md-6">
+                                            <header class="text-center">
+                                                <img src="{{ asset('dist/img/logo.png') }}" alt="Symfony Core App">
+                                                <h2>Lorem ipsum</h2>
+                                            </header>
+
+                                            <p class="lead text-justify my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquam at cum doloremque dolorum eius, esse labore magni mollitia nihil non optio.</p>
+                                            <p class="lead text-justify my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, commodi consectetur cum earum eius illum nesciunt nostrum nulla odit officia quia quod, quos reprehenderit soluta, temporibus. Amet dolor facilis rerum?</p>
+
+                                            <h4 class="text-center mb-0">Consectetur adipisicing elit</h4>
+                                        </div>
+                                        <div class="col col-md-6">
+                                            {{ form_start(registerForm) }}
+
+                                            <div class="form-group">
+                                                {{ form_label(registerForm.email) }}
+                                                {{ form_widget(registerForm.email, {attr: {class: 'form-control'}}) }}
+                                                {{ form_errors(registerForm.email) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_label(registerForm.firstname) }}
+                                                {{ form_widget(registerForm.firstname, {attr: {class: 'form-control'}}) }}
+                                                {{ form_errors(registerForm.firstname) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_label(registerForm.lastname) }}
+                                                {{ form_widget(registerForm.lastname, {attr: {class: 'form-control'}}) }}
+                                                {{ form_errors(registerForm.lastname) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_label(registerForm.password.first) }}
+                                                {{ form_widget(registerForm.password.first, {attr: {class: 'form-control'}}) }}
+                                                {{ form_errors(registerForm.password.first) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_label(registerForm.password.second) }}
+                                                {{ form_widget(registerForm.password.second, {attr: {class: 'form-control'}}) }}
+                                                {{ form_errors(registerForm.password.second) }}
+                                            </div>
+                                            <div class="form-check">
+                                                {{ form_widget(registerForm.conditionsAccepted, {attr: {class: 'form-check-input'}}) }}
+                                                {{ form_label(registerForm.conditionsAccepted, null, {label_attr: {class: 'form-check-label'}}) }}
+                                                {{ form_errors(registerForm.conditionsAccepted) }}
+                                            </div>
+
+                                            <div class="form-check">
+                                                {{ form_widget(registerForm.optinCommercial, {attr: {class: 'form-check-input'}}) }}
+                                                {{ form_label(registerForm.optinCommercial, null, {label_attr: {class: 'form-check-label'}}) }}
+                                            </div>
+
+                                            <div class="form-group text-center">
+                                                {{ form_widget(registerForm.submit, {attr: {class: 'btn btn-primary btn-lg'}}) }}
+                                            </div>
+
+                                            {{ form_end(registerForm) }}
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button class="btn btn-block btn-lg btn-facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="btn btn-block btn-lg btn-google"><i class="fab fa-google"></i> Google</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% include 'common/flashes.html.twig' with {flashes: app.flashes} only %}
+            </div>
+        </main>
+
+        <footer class="mt-auto text-center">
+            <p class="mt-5 mb-0 text-muted">© 2019-2020 | Made with ❤ by <a href="https://www.xpressive.io" target="_blank">xpressive</a>.</p>
+        </footer>
+    </div>
+{% endblock %}

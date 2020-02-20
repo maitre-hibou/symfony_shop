@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  app:
+    volumes:
+      - ..:/app
+  web:
+    volumes:
+      - ../public:/app/public
+  node:
+    volumes:
+      - ..:/app
+  phpmyadmin:
+    build:
+      context: ..
+      dockerfile: ./docker/services/phpmyadmin/Dockerfile
+    depends_on:
+      - database
+    environment:
+      - PMA_HOST=database
+      - VIRTUAL_HOST=pma.symfony-core.local
+    networks:
+      - symfony_core_local
+  maildev:
+    build:
+      context: ..
+      dockerfile: ./docker/services/maildev/Dockerfile
+    environment:
+      - VIRTUAL_HOST=maildev.symfony-core.local
+    networks:
+      - symfony_core_local

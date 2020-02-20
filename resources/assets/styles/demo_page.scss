@@ -1,0 +1,34 @@
+body.demo-page {
+    .cover-container {
+        max-width: 70em;
+
+        .masthead {
+            margin-bottom: 2rem;
+
+            .masthead-brand {
+                margin-bottom: 0;
+            }
+
+            .nav-masthead {
+                .nav-link {
+                    padding: .45rem 0;
+                    font-weight: 400;
+                    background-color: transparent;
+
+                    & + .nav-link {
+                        margin-left: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 48em) {
+    .masthead-brand {
+        float: left;
+    }
+    .nav-masthead {
+        float: right;
+    }
+}

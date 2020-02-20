@@ -1,0 +1,10 @@
+<nav>
+    <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link {{ active == 'index' ? 'active' : '' }}" href="{{ absolute_url(url('dashboard_index'))}}"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link {{ active == 'profile' ? 'active' : '' }}" href="{{ absolute_url(url('dashboard_profile')) }}"><i class="fas fa-user"></i> Profile</a></li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" onclick="return document.getElementById('dashboardMenuFormLogout').submit();"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <form action="{{ absolute_url(url('security_logout')) }}" method="post" id="dashboardMenuFormLogout"></form>
+        </li>
+    </ul>
+</nav>

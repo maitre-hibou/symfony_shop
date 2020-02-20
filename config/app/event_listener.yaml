@@ -1,0 +1,12 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true # Public for testing reason (we need to mock services and replaces them within Symfony container)
+    bind:
+      $mailerFromAddress: '%mailerFromAddress%'
+
+  App\EventListener\UserCreationEventListener:
+    tags:
+      - { name: kernel.event_listener, event: App\Event\User\UserRegisteredEvent, method: onUserRegistered }
+      - { name: kernel.event_listener, event: App\Event\User\UserCreatedEvent, method: onUserCreated }

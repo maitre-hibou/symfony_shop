@@ -1,0 +1,36 @@
+@import "variables";
+
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+.btn-facebook {
+    color: #ffffff;
+    background-color: $color-facebook-blue;
+    border-color: $color-facebook-blue;
+
+    &:hover {
+        color: #ffffff;
+        background-color: darken($color-facebook-blue, 7.5%);
+        border-color: darken($color-facebook-blue, 10%);
+    }
+}
+
+.btn-google {
+    color: #ffffff;
+    background-color: $color-google-red;
+    border-color: $color-google-red;
+
+    &:hover {
+        color: #ffffff;
+        background-color: darken($color-google-red, 7.5%);
+        border-color: darken($color-google-red, 10%);
+    }
+}
+
+html, body {
+    height: 100%;
+}
+
+@import "demo_page";
