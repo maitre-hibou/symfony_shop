@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Event\User;
+namespace App\Event\Security;
 
-use App\Entity\User;
+use App\Entity\Security\User;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**

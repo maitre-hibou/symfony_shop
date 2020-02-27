@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Entity\EmailConfirmationToken;
-use App\Entity\User;
+use App\Entity\Security\EmailConfirmationToken;
+use App\Entity\Security\User;
 use App\Form\Dto\Security\Registration;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;

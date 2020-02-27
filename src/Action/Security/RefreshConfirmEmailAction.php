@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Action\Security;
 
-use App\Entity\EmailConfirmationToken;
-use App\Entity\User;
-use App\Repository\EmailConfirmationTokenRepository;
+use App\Entity\Security\EmailConfirmationToken;
+use App\Entity\Security\User;
+use App\Repository\Security\EmailConfirmationTokenRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

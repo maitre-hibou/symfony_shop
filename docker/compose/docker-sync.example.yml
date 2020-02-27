@@ -4,7 +4,7 @@ options:
   verbose: true
 
 syncs:
-  symfony_core_app-sync:
+  symfony_shop_app-sync:
     src: './'
     sync_strategy: 'unison'
     sync_host_ip: '127.0.0.1'
@@ -17,7 +17,7 @@ syncs:
       - "-ignore='Name node_modules'"                 # NPM libraries
     sync_excludes: ['.*/.git', '.*/.idea', '.*/.docker-sync', './docker/storage', '.*/node_modules']
     watch_excludes: ['.*/.git', '.*/.idea', '.*/.docker-sync', './docker/storage', '.*/node_modules']
-  symfony_core_web-sync:
+  symfony_shop_web-sync:
     src: './public'
     sync_host_ip: '127.0.0.1'
     sync_strategy: 'unison'

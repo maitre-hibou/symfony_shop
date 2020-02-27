@@ -13,7 +13,10 @@
     let webpackConfig = {
         context: path.resolve(__dirname),
         entry: {
-            theme: path.resolve(config.paths.assets, 'scripts/theme.js')
+            theme: [
+                path.resolve(config.paths.assets, 'scripts/theme.js'),
+                path.resolve(config.paths.assets, 'styles/theme.scss')
+            ]
         },
         mode: config.isProduction ? 'production' : 'development',
         module: {
@@ -35,14 +38,21 @@
                     ]
                 },
                 {
-                    test: /images\/(.+).(jpe?g|png|gif|svg|ico)/,
+                    test: /\.css/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        { loader: 'css-loader', options: {sourceMap: config.isProduction} }
+                    ]
+                },
+                {
+                    test: /(images|img)\/(.+).(jpe?g|png|gif|svg|ico)/,
                     include: config.paths.assets,
                     use: [
                         { loader: 'file-loader', options: { name: `img/${config.cacheBusting}.[ext]` } }
                     ]
                 },
                 {
-                    test: /webfonts\/(.+).(eot|svg|woff|woff2|ttf)/,
+                    test: /(web)?fonts\/(.+).(eot|svg|woff|woff2|ttf)/,
                     use: {
                         loader: 'file-loader',
                         options: {
@@ -62,6 +72,13 @@
             new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['**/*', '!.gitkeep']}),
             new MiniCssExtractPlugin({
                 filename: `css/${config.cacheBusting}.css`
+            }),
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jQuery: 'jquery'
+            }),
+            new webpack.DefinePlugin({
+                APP_URL: JSON.stringify(config.appUrl),
             })
         ]
     };

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Entity\User;
+use App\Entity\Security\User;
 use Symfony\Component\Security\Core\Exception\AccountExpiredException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

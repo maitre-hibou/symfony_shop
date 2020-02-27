@@ -21,11 +21,7 @@ services:
   # this creates a service per class whose id is the fully-qualified class name
   App\:
     resource: '../src/*'
-    exclude: '../src/{Action,Admin,Asset,DependencyInjection,Entity,Event,EventListener,Migrations,Tests,Kernel.php}'
-
-  App\Action\:
-    resource: '../src/Action'
-    tags: ['controller.service_arguments']
+    exclude: '../src/{Action,Admin,Asset,Controller,DependencyInjection,Entity,Event,EventListener,Migrations,Tests,Kernel.php}'
 
   App\Asset\VersionStrategy:
     arguments:
@@ -33,6 +29,10 @@ services:
 
   # controllers are imported separately to make sure services can be injected
   # as action arguments even if you don't extend any base controller class
+  App\Action\:
+    resource: '../src/Action'
+    tags: ['controller.service_arguments']
+
   App\Controller\:
     resource: '../src/Controller'
     tags: ['controller.service_arguments']

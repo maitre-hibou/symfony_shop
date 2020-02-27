@@ -68,7 +68,7 @@ final class ResetPasswordRequestAction
         );
     }
 
-    private function sendEmail(\App\Entity\ResetPasswordRequest $resetPasswordRequestEntity)
+    private function sendEmail(\App\Entity\Security\ResetPasswordRequest $resetPasswordRequestEntity)
     {
         $message = (new \Swift_Message('Reset your password'))
             ->setFrom('noreply@symfony_core.local')

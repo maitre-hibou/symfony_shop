@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Entity\User;
+use App\Entity\Security\User;
 use App\Form\Dto\Security\ResetPassword;
 use App\Form\Dto\Security\ResetPasswordRequest;
-use App\Repository\ResetPasswordRequestRepository;
-use App\Repository\UserRepository;
+use App\Repository\Security\ResetPasswordRequestRepository;
+use App\Repository\Security\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -34,7 +34,7 @@ final class ResetPasswordHandler
         $this->userPasswordEncoder = $userPasswordEncoder;
     }
 
-    public function getResetPasswordRequest(string $token): \App\Entity\ResetPasswordRequest
+    public function getResetPasswordRequest(string $token): \App\Entity\Security\ResetPasswordRequest
     {
         if (null === ($resetPasswordRequest = $this->resetPasswordRequestRepository->findOneBy(['token' => $token]))) {
             throw new \LogicException('This token does not exists.');
@@ -51,7 +51,7 @@ final class ResetPasswordHandler
         return $resetPasswordRequest;
     }
 
-    public function handleResetPasswordRequest(ResetPasswordRequest $resetPasswordRequest): ?\App\Entity\ResetPasswordRequest
+    public function handleResetPasswordRequest(ResetPasswordRequest $resetPasswordRequest): ?\App\Entity\Security\ResetPasswordRequest
     {
         if (null === $this->userRepository->findOneBy(['email' => $resetPasswordRequest->email])) {
             return null;
@@ -79,7 +79,7 @@ final class ResetPasswordHandler
         return $resetPasswordRequestEntity;
     }
 
-    public function handleUserPasswordChange(\App\Entity\ResetPasswordRequest $resetPasswordRequest, ResetPassword $resetPassword)
+    public function handleUserPasswordChange(\App\Entity\Security\ResetPasswordRequest $resetPasswordRequest, ResetPassword $resetPassword)
     {
         /** @var User $user */
         if (null === ($user = $this->userRepository->findOneBy(['email' => $resetPasswordRequest->getEmail()]))) {
@@ -91,9 +91,9 @@ final class ResetPasswordHandler
         $this->entityManager->flush();
     }
 
-    private function buildNewResetPasswordRequestEntity(ResetPasswordRequest $resetPasswordRequest): \App\Entity\ResetPasswordRequest
+    private function buildNewResetPasswordRequestEntity(ResetPasswordRequest $resetPasswordRequest): \App\Entity\Security\ResetPasswordRequest
     {
-        $resetPasswordRequestEntity = new \App\Entity\ResetPasswordRequest();
+        $resetPasswordRequestEntity = new \App\Entity\Security\ResetPasswordRequest();
 
         $resetPasswordRequestEntity->setEmail($resetPasswordRequest->email)
             ->setToken($this->generateToken($resetPasswordRequest));

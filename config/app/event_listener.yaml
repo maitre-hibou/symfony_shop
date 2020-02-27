@@ -6,7 +6,7 @@ services:
     bind:
       $mailerFromAddress: '%mailerFromAddress%'
 
-  App\EventListener\UserCreationEventListener:
+  App\EventListener\Security\UserCreationEventListener:
     tags:
-      - { name: kernel.event_listener, event: App\Event\User\UserRegisteredEvent, method: onUserRegistered }
-      - { name: kernel.event_listener, event: App\Event\User\UserCreatedEvent, method: onUserCreated }
+      - { name: kernel.event_listener, event: App\Event\Security\UserRegisteredEvent, method: onUserRegistered }
+      - { name: kernel.event_listener, event: App\Event\Security\UserCreatedEvent, method: onUserCreated }

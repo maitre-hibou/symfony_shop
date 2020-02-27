@@ -1,12 +1,12 @@
 security:
 
   encoders:
-    App\Entity\User:
+    App\Entity\Security\User:
       algorithm: sodium
 
   providers:
     security_users:
-      entity: { class: App\Entity\User, property: email }
+      entity: { class: App\Entity\Security\User, property: email }
 
   firewalls:
     dev:

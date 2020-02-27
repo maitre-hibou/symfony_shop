@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Action\Dashboard;
 
 use App\Dashboard\ProfileManager;
-use App\Entity\User;
+use App\Entity\Security\User;
 use App\Form\Dto\Dashboard\ChangePassword;
 use App\Form\Dto\Dashboard\Informations;
 use App\Form\Type\Dashboard\ChangePasswordType;

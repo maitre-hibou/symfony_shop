@@ -8,12 +8,12 @@ final class UserAdminTest extends AbstractAdminTest
 {
     public function testList()
     {
-        $this->listAllowed('app/user');
+        $this->listAllowed('app/security-user');
     }
 
     public function testCreate()
     {
-        $this->createAllowed('app/user', [
+        $this->createAllowed('app/security-user', [
             'email' => 'user_test@example.com',
             'firstname' => 'Test',
             'lastname' => 'User',
@@ -23,11 +23,11 @@ final class UserAdminTest extends AbstractAdminTest
 
     public function testEdit()
     {
-        $this->editAllowed('app/user', 2);
+        $this->editAllowed('app/security-user', 2);
     }
 
     public function testDelete()
     {
-        $this->deleteAllowed('app/user', 2);
+        $this->deleteAllowed('app/security-user', 2);
     }
 }

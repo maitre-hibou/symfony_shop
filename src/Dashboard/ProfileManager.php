@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dashboard;
 
-use App\Entity\User;
+use App\Entity\Security\User;
 use App\Form\Dto\Dashboard\Informations;
 use AutoMapperPlus\AutoMapperInterface;
 use Doctrine\ORM\EntityManagerInterface;

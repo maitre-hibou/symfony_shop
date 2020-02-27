@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Entity\Security;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ResetPasswordRequestRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Security\ResetPasswordRequestRepository")
+ * @ORM\Table(name="security_reset_password_request")
  */
 final class ResetPasswordRequest
 {

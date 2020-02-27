@@ -15,6 +15,6 @@ final class HomeActionTest extends WebTestCase
         $crawler = $client->request(Request::METHOD_GET, '/');
 
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Symfony Core App")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Symfony Eshop Demo")')->count());
     }
 }

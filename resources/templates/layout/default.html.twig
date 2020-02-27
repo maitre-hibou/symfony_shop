@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
         <title>{% block title %}Symfony Core App{% endblock %}</title>
         <link rel="icon" type="image/png" href="{{ asset('dist/img/logo.png') }}">
 
@@ -13,6 +15,84 @@
         {% block page_styles %}{% endblock %}
     </head>
     <body class="{% block body_class %}{% endblock %}">
+        <div class="toasts-container position-absolute d-flex justify-content-center" aria-live="polite" aria-atomic="true" style="top:0; left:0; right:0; z-index: 10000">
+            <div class="toasts-inner-container">
+                {% block toasts %}
+                    {% if error is defined and error  %}
+                        <div class="toast mt-3" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+                            <div class="toast-header bg-danger text-white">
+                                <i class="fa fa-times-circle"></i>
+                                <span class="font-weight-medium ml-2 mr-auto">Error !</span>
+                                <button type="button" class="close text-white ml-2 mb-1" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="toast-body text-danger">{{ error.message|trans() }}</div>
+                        </div>
+                    {% endif %}
+
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            {% set toastClass = (label != 'error') ? label : 'danger' %}
+                            <div class="toast mt-3" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+                                <div class="toast-header bg-{{ toastClass }} text-white">
+                                    <span class="mr-auto">{{ label|trans({}, 'messages') }}</span>
+                                    <button type="button" class="close text-white ml-2 mb-1" data-dismiss="toast" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="toast-body text-{{ label }}" style="min-width: 200px">{{ message|raw }}</div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block modals %}{% endblock %}
+
+         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="{{ absolute_url(url('homepage')) }}"><img src="{{ absolute_url(asset('dist/img/logo.png')) }}" class="d-inline-block align-top" alt="Symfony" width="30" height="30"> Shop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Products</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        {% if app.user %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" type="button" id="mainMenuDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Welcome, {{ app.user.firstname }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ absolute_url(url('dashboard_index')) }}">Dashboard</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a class="dropdown-item" href="{{ absolute_url(url('sonata_admin_dashboard')) }}">Admin</a>
+                                    {% endif %}
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" onclick="return document.getElementById('menuFormLogout').submit();">Sign Out</a>
+                                </div>
+                            </li>
+
+                            <form action="{{ absolute_url(url('security_logout')) }}" id="menuFormLogout" method="post" style="display: none"></form>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link {{ activeLink == 'registration' ? 'active' : '' }}" href="{{ absolute_url(url('security_register')) }}">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ activeLink == 'login' ? 'active' : '' }}" href="{{ absolute_url(url('security_login')) }}">Sign In</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
         {% block content %}{% endblock %}
 

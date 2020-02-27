@@ -18,14 +18,14 @@ services:
       - database
     environment:
       - PMA_HOST=database
-      - VIRTUAL_HOST=pma.symfony-core.local
+      - VIRTUAL_HOST=pma.eshop.symfony.local
     networks:
-      - symfony_core_local
+      - symfony_shop_local
   maildev:
     build:
       context: ..
       dockerfile: ./docker/services/maildev/Dockerfile
     environment:
-      - VIRTUAL_HOST=maildev.symfony-core.local
+      - VIRTUAL_HOST=maildev.eshop.symfony.local
     networks:
-      - symfony_core_local
+      - symfony_shop_local

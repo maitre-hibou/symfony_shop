@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Entity\Security;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Security\UserRepository")
+ * @ORM\Table(name="security_user")
  */
 class User implements UserInterface
 {
@@ -84,14 +85,14 @@ class User implements UserInterface
     /**
      * @var EmailConfirmationToken|null
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\EmailConfirmationToken", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="App\Entity\Security\EmailConfirmationToken", mappedBy="user")
      */
     private $emailConfirmationToken;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="smallint", options={"default"=App\Entity\User::STATUS_INACTIVE})
+     * @ORM\Column(type="smallint", options={"default"=App\Entity\Security\User::STATUS_INACTIVE})
      */
     private $status;
 

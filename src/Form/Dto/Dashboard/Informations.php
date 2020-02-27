@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Dto\Dashboard;
 
-use App\Entity\User;
+use App\Entity\Security\User;
 use App\Form\Dto\DataTransferObjectInterface;
 use AutoMapperPlus\AutoMapperPlusBundle\AutoMapperConfiguratorInterface;
 use AutoMapperPlus\Configuration\AutoMapperConfigInterface;

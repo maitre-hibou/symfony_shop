@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Entity\Security;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EmailConfirmationTokenRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Security\EmailConfirmationTokenRepository")
+ * @ORM\Table(name="security_email_confirmation_token")
  */
 final class EmailConfirmationToken
 {
@@ -40,7 +41,7 @@ final class EmailConfirmationToken
     /**
      * @var User
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="emailConfirmationToken")
+     * @ORM\OneToOne(targetEntity="App\Entity\Security\User", inversedBy="emailConfirmationToken")
      */
     private $user;
 

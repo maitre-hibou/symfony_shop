@@ -1,7 +1,7 @@
 version: "3"
 
 networks:
-  symfony_core_local:
+  symfony_shop_local:
     external: true
 
 services:
@@ -10,7 +10,7 @@ services:
       context: ..
       dockerfile: ./docker/services/app/Dockerfile
     networks:
-      - symfony_core_local
+      - symfony_shop_local
     volumes:
       - app_sources:/app
       - app_cache:/app/var/cache
@@ -21,11 +21,11 @@ services:
     depends_on:
       - app
     environment:
-      - VIRTUAL_HOST=symfony-core.local
+      - VIRTUAL_HOST=eshop.symfony.local
       - VIRTUAL_PORT=443
       - VIRTUAL_PROTO=https
     networks:
-      - symfony_core_local
+      - symfony_shop_local
     volumes:
       - app_sources:/app
   database:
@@ -38,7 +38,7 @@ services:
       - MYSQL_USER=${DB_USERNAME}
       - MYSQL_PASSWORD=${DB_PASSWORD}
     networks:
-      - symfony_core_local
+      - symfony_shop_local
     volumes:
       - app_database:/var/lib/mysql
   node:
@@ -49,7 +49,7 @@ services:
     depends_on:
       - app
     networks:
-      - symfony_core_local
+      - symfony_shop_local
     user: node
     volumes:
       - app_sources:/app

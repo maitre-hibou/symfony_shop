@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Action\Security;
 
-use App\Event\User\UserRegisteredEvent;
+use App\Event\Security\UserRegisteredEvent;
 use App\Form\Dto\Security\Registration;
 use App\Form\Type\Security\RegisterType;
 use App\Security\RegistrationHandler;

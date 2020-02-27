@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\EventListener;
+namespace App\EventListener\Security;
 
-use App\Event\User\UserCreatedEvent;
-use App\Event\User\UserRegisteredEvent;
+use App\Event\Security\UserCreatedEvent;
+use App\Event\Security\UserRegisteredEvent;
 use Swift_Mailer;
 use Swift_Message;
 use Twig\Environment;

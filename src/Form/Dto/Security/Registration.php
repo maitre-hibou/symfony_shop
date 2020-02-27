@@ -10,7 +10,7 @@ use App\Validator\Constraint as AppConstraints;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @AppConstraints\DtoUniqueEntity(entityClass="App\Entity\User", fieldMapping={"email": "email"}, message="There is already a user with email {{ value }}.")
+ * @AppConstraints\DtoUniqueEntity(entityClass="App\Entity\Security\User", fieldMapping={"email": "email"}, message="There is already a user with email {{ value }}.")
  */
 final class Registration implements DataTransferObjectInterface
 {

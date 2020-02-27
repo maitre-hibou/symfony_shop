@@ -21,7 +21,7 @@ final class LoginActionTest extends WebTestCase
     {
         $crawler = $this->client->request(Request::METHOD_GET, '/login');
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Please sign in")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Sign In")')->count());
     }
 
     public function testLogin()

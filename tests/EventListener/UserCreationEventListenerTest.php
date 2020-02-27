@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\EventListener;
 
-use App\Entity\User;
-use App\Event\User\UserCreatedEvent;
-use App\Event\User\UserRegisteredEvent;
-use App\EventListener\UserCreationEventListener;
+use App\Entity\Security\User;
+use App\Event\Security\UserCreatedEvent;
+use App\Event\Security\UserRegisteredEvent;
+use App\EventListener\Security\UserCreationEventListener;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Contracts\EventDispatcher\Event;
 

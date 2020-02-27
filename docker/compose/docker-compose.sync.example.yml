@@ -3,16 +3,16 @@ version: "3"
 services:
   app:
     volumes:
-      - symfony_core_app-sync:/app
+      - symfony_shop_app-sync:/app
   web:
     ports:
       - 8080:80
       - 8081:443
     volumes:
-      - symfony_core_app-sync:/app
+      - symfony_shop_web-sync:/app
   node:
     volumes:
-      - symfony_core_app-sync:/app
+      - symfony_shop_app-sync:/app
   phpmyadmin:
     build:
       context: ..
@@ -21,7 +21,7 @@ services:
       - database
     environment:
       - PMA_HOST=database
-      - VIRTUAL_HOST=pma.symfony-core.local
+      - VIRTUAL_HOST=pma.eshop.symfony.local
     networks:
       - symfony_core_ocal
   maildev:
@@ -29,9 +29,9 @@ services:
       context: ..
       dockerfile: ./docker/services/maildev/Dockerfile
     environment:
-      - VIRTUAL_HOST=pma.symfony-core.local
+      - VIRTUAL_HOST=pma.eshop.symfony.local
     networks:
-     - symfony_core_ocal
+     - symfony_shop_local
 
 volumes:
   symfony_core_app-sync:
