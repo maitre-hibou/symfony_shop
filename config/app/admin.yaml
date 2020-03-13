@@ -3,7 +3,20 @@ services:
     autowire: true
     autoconfigure: true
 
-  App\Admin\UserAdmin:
+  App\Admin\Security\UserAdmin:
     arguments: [ ~, App\Entity\Security\User, ~ ]
     tags:
-      - { name: sonata.admin, manager_type: orm, group: Users, label: Users }
+      - { name: sonata.admin, manager_type: orm, group: Security, label: Users, icon: '<i class="fa fa-lock"></i>' }
+
+  App\Admin\Shop\CategoryAdmin:
+    arguments: [ ~, App\Entity\Shop\Category, ~ ]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Shop, label: Categories, icon: '<i class="fa fa-shopping-cart"></i>' }
+
+  App\Admin\Shop\ProductAdmin:
+    arguments: [ ~, App\Entity\Shop\AbstractProduct, ~ ]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: Shop, label: Products }
+    calls:
+      - method: setSubClasses
+        arguments: [ { 'default_product': App\Entity\Shop\DefaultProduct } ]

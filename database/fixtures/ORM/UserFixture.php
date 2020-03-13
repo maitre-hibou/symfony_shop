@@ -7,7 +7,7 @@ namespace App\DataFixtures\ORM;
 use App\Entity\Security\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 final class UserFixture extends Fixture implements OrderedFixtureInterface
@@ -17,7 +17,6 @@ final class UserFixture extends Fixture implements OrderedFixtureInterface
         'user2@example.com' => ['Secret@2', 'Bar', 'Baz', true, true, User::STATUS_ACTIVE, [User::ROLE_USER]],
         'user3@example.com' => ['Secret@3', 'Baz', 'Foo', true, false, User::STATUS_INACTIVE, [User::ROLE_USER]],
         'user4@example.com' => ['Secret@4', 'Baz', 'Bar', true, false, User::STATUS_LOCKED, [User::ROLE_USER]],
-        'superadmin@example.com' => ['Secret@12', 'Test', 'Admin', true, false, User::STATUS_ACTIVE, [User::ROLE_USER, User::ROLE_ADMIN, User::ROLE_SUPERADMIN]],
         'admin1@example.com' => ['Secret@12', 'Test', 'Admin', true, false, User::STATUS_ACTIVE, [User::ROLE_USER, User::ROLE_ADMIN]],
     ];
 

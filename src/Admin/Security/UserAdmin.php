@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Admin;
+namespace App\Admin\Security;
 
 use App\Entity\Security\User;
 use App\Event\Security\UserCreatedEvent;
