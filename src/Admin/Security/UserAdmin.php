@@ -88,6 +88,9 @@ final class UserAdmin extends AbstractAdmin
                 'actions' => [
                     'edit' => [],
                     'delete' => [],
+                    'switch_to' => [
+                        'template' => 'admin/CRUD/list__action_switch_to.html.twig',
+                    ],
                 ],
             ])
         ;

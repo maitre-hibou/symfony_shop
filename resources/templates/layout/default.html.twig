@@ -51,7 +51,7 @@
 
         {% block modals %}{% endblock %}
 
-         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ absolute_url(url('homepage')) }}"><img src="{{ absolute_url(asset('dist/img/logo.png')) }}" class="d-inline-block align-top" alt="Symfony" width="30" height="30"> Shop</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,6 +95,13 @@
         </nav>
 
         {% block content %}{% endblock %}
+
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+            <div class="position-absolute d-flex justify-content-between bg-danger align-items-center px-3 py-2 text-light" style="bottom: 0; left: 0; right: 0;">
+                <p class="m-0">Logged in as : {{ app.user }}</p>
+                <p class="m-0"><a href="{{ absolute_url(url('sonata_admin_dashboard', {'_switch_user': '_exit'})) }}" class="btn btn-outline-light">Exit</a></p>
+            </div>
+        {% endif %}
 
         {% block javascripts %}
             <script src="{{ asset('dist/js/theme.js') }}"></script>

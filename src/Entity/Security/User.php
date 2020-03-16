@@ -104,6 +104,11 @@ class User implements UserInterface
         $this->status = self::STATUS_ACTIVE;
     }
 
+    public function __toString()
+    {
+        return sprintf('%s %s (%s)', $this->getFirstname(), $this->getLastname(), $this->getEmail());
+    }
+
     public function getId(): int
     {
         return $this->id;

@@ -1,0 +1,6 @@
+{% if is_granted('ROLE_ALLOWED_TO_SWITCH') and object != app.user %}
+    <a href="{{ absolute_url(url('homepage', {'_switch_user': object.email})) }}" class="btn btn-sm btn-default edit_link" title="{{ 'action_switch'|trans({}, 'SonataAdminBundle') }}">
+        <i class="fa fa-exchange" aria-hidden="true"></i>
+        {{ 'action_switch'|trans({}, 'SonataAdminBundle') }}
+    </a>
+{% endif %}

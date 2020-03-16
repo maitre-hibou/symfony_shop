@@ -16,6 +16,7 @@ security:
     main:
       anonymous: true
       pattern: ^/
+      switch_user: true
       user_checker: App\Security\UserChecker
       form_login:
         check_path: security_login
@@ -30,4 +31,4 @@ security:
     - { path: ^/admin, roles: ROLE_ADMIN }
 
   role_hierarchy:
-    ROLE_SUPERADMIN: ROLE_ADMIN
+    ROLE_SUPERADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
