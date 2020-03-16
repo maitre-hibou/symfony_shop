@@ -1,0 +1,116 @@
+{% extends 'layout/default.html.twig' %}
+
+{% set title = 'My Addresses' %}
+
+{% form_theme createUserAddressForm 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}{{ title }} | {{ parent() }}{% endblock %}
+
+{% block body_class %}demo-page{% endblock %}
+
+{% block modals %}
+    <div class="modal fade" id="createUserAddressModal" tabindex="-1" role="dialog" aria-labelledby="createUserAddressModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createUserAddressModalLabel">Create address</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(createUserAddressForm) }}
+
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(createUserAddressForm.label, {attr: {placeholder: 'My home address'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(createUserAddressForm.default) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            {{ form_row(createUserAddressForm.address.civility) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ form_row(createUserAddressForm.address.company) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            {{ form_row(createUserAddressForm.address.firstname) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ form_row(createUserAddressForm.address.lastname) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(createUserAddressForm.address.address) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(createUserAddressForm.address.address2) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            {{ form_row(createUserAddressForm.address.postcode) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ form_row(createUserAddressForm.address.city) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(createUserAddressForm.address.phone) }}
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        {{ form_widget(createUserAddressForm.submit) }}
+                    </div>
+
+                    {{ form_end(createUserAddressForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <header class="page-header py-5 bg-light">
+        <div class="container">
+            <h1 class="m-0">{{ title }}</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-3">
+                    {% include 'dashboard/common/dashboard_menu.html.twig' with {active: 'address'} only %}
+                </div>
+                <div class="col-9">
+                    <p class="lead text-center">You have no saved address :(</p>
+                    <p class="text-right">
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#createUserAddressModal">
+                            Create address
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

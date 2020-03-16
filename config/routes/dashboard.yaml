@@ -1,3 +1,7 @@
+dashboard_address:
+  path: /dashboard/addresses
+  controller: App\Action\Dashboard\AddressAction
+
 dashboard_index:
   path: /dashboard
   controller: App\Action\Dashboard\IndexAction
