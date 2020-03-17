@@ -26,9 +26,9 @@ class Address
     private $id;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(type="string", length=16)
+     * @ORM\Column(type="smallint")
      */
     private $civility;
 
@@ -93,12 +93,12 @@ class Address
         return $this->id;
     }
 
-    public function getCivility(): ?string
+    public function getCivility(): ?int
     {
         return $this->civility;
     }
 
-    public function setCivility(string $civility): self
+    public function setCivility(int $civility): self
     {
         $this->civility = $civility;
 

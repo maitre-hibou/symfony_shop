@@ -7,7 +7,7 @@ namespace App\Form\Dto;
 final class Address implements DataTransferObjectInterface
 {
     /**
-     * @var string
+     * @var int
      */
     public $civility;
 

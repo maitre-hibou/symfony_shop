@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity\Security;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -96,12 +98,20 @@ class User implements UserInterface
      */
     private $status;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Security\UserAddress", mappedBy="user")
+     */
+    private $userAddresses;
+
     public function __construct()
     {
         $this->roles = [self::ROLE_USER];
         $this->optinCommercial = false;
         $this->conditionsAccepted = false;
         $this->status = self::STATUS_ACTIVE;
+        $this->userAddresses = new ArrayCollection();
     }
 
     public function __toString()
@@ -234,5 +244,10 @@ class User implements UserInterface
         $this->status = $status;
 
         return $this;
+    }
+
+    public function getUserAddresses(): Collection
+    {
+        return $this->userAddresses;
     }
 }

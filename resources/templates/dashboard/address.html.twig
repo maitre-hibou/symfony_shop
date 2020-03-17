@@ -103,8 +103,32 @@
                     {% include 'dashboard/common/dashboard_menu.html.twig' with {active: 'address'} only %}
                 </div>
                 <div class="col-9">
-                    <p class="lead text-center">You have no saved address :(</p>
-                    <p class="text-right">
+                    {% if userAddresses|length > 0 %}
+                        <div class="accordion" id="userAddressesAccordion">
+                            {% for userAddress in userAddresses %}
+                                <div class="card">
+                                    <div class="card-header" id="headingUserAddress_{{ loop.index }}">
+                                        <h3 class="mb-0">
+                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseUserAddress_{{ loop.index }}" aria-expanded="true" aria-controls="collapseUserAddress_{{ loop.index }}">
+                                                {{ userAddress.label }}
+                                            </button>
+                                        </h3>
+                                    </div>
+                                    <div id="collapseUserAddress_{{ loop.index }}" class="collapse {% if userAddress.defaultAddress %}show{% endif %}" aria-labelledby="headingUserAddress_{{ loop.index }}" data-parent="#userAddressesAccordion  ">
+                                        <div class="card-body">
+
+                                        </div>
+                                        <div class="card-footer text-right">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="lead text-center">You have no saved address :(</p>
+                    {% endif %}
+                    <p class="text-right mt-3">
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#createUserAddressModal">
                             Create address
                         </button>

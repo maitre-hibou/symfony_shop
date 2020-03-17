@@ -8,11 +8,13 @@ use App\Entity\Address;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\Security\UserAddressRepository")
  * @ORM\Table(name="security_user_address")
  */
 class UserAddress
 {
+    public const DEFAULT_LABEL = 'Home address';
+
     /**
      * @var int
      *
@@ -34,7 +36,7 @@ class UserAddress
      *
      * @ORM\Column(type="boolean")
      */
-    private $default;
+    private $defaultAddress;
 
     /**
      * @var User
@@ -47,7 +49,7 @@ class UserAddress
     /**
      * @var Address
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\Address")
+     * @ORM\OneToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
      */
     private $address;
 
@@ -68,14 +70,14 @@ class UserAddress
         return $this;
     }
 
-    public function isDefault(): ?bool
+    public function isDefaultAddress(): ?bool
     {
-        return $this->default;
+        return $this->defaultAddress;
     }
 
-    public function setDefault(bool $default): self
+    public function setDefaultAddress(bool $defaultAddress): self
     {
-        $this->default = $default;
+        $this->defaultAddress = $defaultAddress;
 
         return $this;
     }
